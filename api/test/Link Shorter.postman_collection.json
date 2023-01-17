@@ -1,0 +1,140 @@
+{
+	"info": {
+		"_postman_id": "96fa6320-e4d9-4c5e-9cc9-5c0a50cef812",
+		"name": "Link Shorter",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17977350"
+	},
+	"item": [
+		{
+			"name": "UserApi",
+			"item": [
+				{
+					"name": "Redict",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/u/JBP2SV",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"u",
+								"JBP2SV"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Short Link",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"link\":\"https://github.com/Leizhenpeng/link-shorter\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/short",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"short"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AdminApi",
+			"item": [
+				{
+					"name": "All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/admin/all",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Flush",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/admin/flush",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"flush"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Del One",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"key\":\"JBP2SV\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/admin/del",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"del"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ping",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/ping",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"ping"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "localhost:8081"
+		}
+	]
+}

@@ -37,9 +37,9 @@
 
 - 😃 [daisyui](https://daisyui.com/) 使用 Tailwind CSS 但少写类名
 
-- 🌍 [I18n ready](./locales)
+- 🌍 [I18n](https://robisim74.gitbook.io/qwik-speak/) 支持多语言
 
-- ⚙️ Unit Testing with [Vitest](https://github.com/vitest-dev/vitest), E2E Testing with [Cypress](https://cypress.io/) on [GitHub Actions](https://github.com/features/actions)
+[//]: # (- ⚙️ Unit Testing with [Vitest]&#40;https://github.com/vitest-dev/vitest&#41;, E2E Testing with [Cypress]&#40;https://cypress.io/&#41; on [GitHub Actions]&#40;https://github.com/features/actions&#41;)
 
 - ☁️ Deploy on Netlify, zero-config
 

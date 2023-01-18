@@ -3,7 +3,7 @@ header {
   justify-content: space-between;
   background: white;
   align-items: center;
-  border-bottom: 10px solid var(--qwik-dark-purple);
+  border-bottom: 10px solid var(--qwik-light-purple);
 }
 
 header .logo a {

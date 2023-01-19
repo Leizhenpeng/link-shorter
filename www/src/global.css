@@ -10,7 +10,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 :root {
   --qwik-dark-blue: #006ce9;
   --qwik-light-blue: #18b6f6;
@@ -19,9 +18,11 @@
 }
 
 body {
+  height: 100vh;
   background-color: #fafafa;
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  padding-top:30px
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    sans-serif;
+  padding-top: 30px;
 }
 
 main {
@@ -105,4 +106,3 @@ footer a {
 footer a:hover {
   text-decoration: underline;
 }
-

@@ -1,14 +1,20 @@
-import { component$, useContext, useResource$, useTask$ } from '@builder.io/qwik';
-import { AlterContext, handleShort, IAlterContext, IInputContext, showTip } from '~/routes/store';
-import { InputContext } from '~/routes/store';
-import { clearState } from '../../routes/store';
+import { component$, useContext } from "@builder.io/qwik";
+import {
+  AlterContext,
+  handleShort,
+  IAlterContext,
+  ILinkContext,
+  LinkContext,
+  showTip
+} from "~/routes/store";
+import { clearState } from "../../routes/store";
 
 
-export const handleOnInput = (event: Event, state: IInputContext) => {
+export const handleOnInput = (event: Event, state: ILinkContext) => {
   state.rawUrl = (event.target as HTMLInputElement).value
 }
 
-export const handleEnter = (event: any, state: IInputContext) => {
+export const handleEnter = (event: any, state: ILinkContext) => {
   if (event.key.toLowerCase() === 'enter' && state.rawUrl.length > 0) {
     clearState(state)
     handleShort(state)
@@ -16,7 +22,7 @@ export const handleEnter = (event: any, state: IInputContext) => {
 }
 
 export const UrlInput = component$(() => {
-  const state = useContext(InputContext) as IInputContext;
+  const state = useContext(LinkContext) as ILinkContext;
   return (
     <div class="justify-center items-center flex-row flex mt-[30px]">
       <input
@@ -37,7 +43,7 @@ export const UrlInput = component$(() => {
 
 
 export const Btn = component$(() => {
-  const state = useContext(InputContext) as IInputContext;
+  const state = useContext(LinkContext) as ILinkContext;
   const alterState = useContext(AlterContext) as IAlterContext;
   return <div> <button
     onClick$={() => {

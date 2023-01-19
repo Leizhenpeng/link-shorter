@@ -22,7 +22,9 @@ body {
   background-color: #fafafa;
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
     sans-serif;
-  padding-top: 30px;
+  display: flex;
+  justify-content: center;
+    align-items: center;
 }
 
 main {
@@ -49,32 +51,7 @@ section {
   border-bottom: 10px solid var(--qwik-light-blue);
 }
 
-ul {
-  list-style-type: square;
-  margin: 5px 0 30px 0;
-  padding-left: 25px;
-}
 
-li {
-  padding: 8px 0;
-}
-
-li::marker {
-  color: var(--qwik-light-blue);
-}
-
-a,
-a:visited {
-  color: var(--qwik-dark-blue);
-}
-
-a:hover {
-  text-decoration: none;
-}
-
-table.commands {
-  margin: 0 0 30px 0;
-}
 
 .commands td {
   padding: 5px;

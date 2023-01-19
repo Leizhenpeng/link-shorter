@@ -1,15 +1,14 @@
-import { component$, Slot } from '@builder.io/qwik';
-import { Alter } from '~/components/alter/alter';
-import Header from '../components/header/header';
+import { component$, Slot } from "@builder.io/qwik";
+import Header from "../components/header/header";
 
 export default component$(() => {
   return (
-    <>
+    <div class={ `whole` }>
       <main>
         <Header />
-        <section style={{
-          minHeight: '800px',
-        }}>
+        <section style={ {
+          minHeight: "800px"
+        } }>
           <Slot />
         </section>
       </main>
@@ -18,6 +17,6 @@ export default component$(() => {
           Made By LeiZhenpeng
         </a>
       </footer>
-    </>
+    </div>
   );
 });

@@ -4,18 +4,19 @@ import { Alter } from '~/components/alter/alter';
 import { UrlInput } from '~/components/url-input/urlInput';
 import { InputStore } from './store';
 import indexCss from './index.css?inline';
+import { Result } from "~/components/result/result";
+import { SloganHan } from "~/components/icons/slogan.ts";
 
 
 export default component$(() => {
   useStylesScoped$(indexCss)
   return (
     <div class="w-full">
-      <p class="slogan">
-        缩短网址，让分享更加简单
-      </p>
+      <SloganHan class={`flex justify-center w-full mt-[140px] mb-4 opacity-80`}></SloganHan>
       <InputStore>
         <Alter/>
         <UrlInput />
+        <Result />
       </InputStore>
     </div>
   );

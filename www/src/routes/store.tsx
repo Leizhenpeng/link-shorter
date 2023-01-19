@@ -3,7 +3,7 @@ import { postData } from '~/utils/fetch';
 import { NormalizeUrl } from '~/utils/url';
 
 
-export const InputContext = createContext('input');
+export const LinkContext = createContext('link');
 export const AlterContext = createContext('alter');
 
 export interface IAlterContext {
@@ -13,7 +13,7 @@ export interface IAlterContext {
     time: number;
 }
 
-export interface IInputContext {
+export interface ILinkContext {
     rawUrl: string;
     ifLoading: boolean;
     shortUrl: string;
@@ -21,7 +21,7 @@ export interface IInputContext {
     ifShowResult: boolean;
 }
 
-export const clearState = (state: IInputContext) => {
+export const clearState = (state: ILinkContext) => {
     state.shortUrl = '';
     state.ifError = false;
     state.ifShowResult = false;
@@ -38,7 +38,7 @@ const reqShort = (link: string) => {
 
 };
 
-export const handleShort = async (state: IInputContext) => {
+export const handleShort = async (state: ILinkContext) => {
     state.ifLoading = true;
     const url = NormalizeUrl(state.rawUrl)
     const res = await reqShort(url)
@@ -57,10 +57,10 @@ export const showTip = (state: IAlterContext, type: IAlterContext["type"], messa
 
 
 export const InputStore = component$(() => {
-    const store = useStore<IInputContext>({
+    const store = useStore<ILinkContext>({
         rawUrl: '',
         ifLoading: false,
-        shortUrl: '',
+        shortUrl: 'https://short.cn/u/22disd',
         ifError: false,
         ifShowResult: false,
     });
@@ -69,7 +69,7 @@ export const InputStore = component$(() => {
             ctx.track(() => store.rawUrl);
         }
     );
-    useContextProvider(InputContext, store);
+    useContextProvider(LinkContext, store);
 
 
     const alterStore = useStore<IAlterContext>({

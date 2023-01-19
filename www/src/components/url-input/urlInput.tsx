@@ -1,9 +1,10 @@
 import { component$, useContext } from "@builder.io/qwik";
+import type {
+  IAlterContext,
+  ILinkContext} from "~/routes/store";
 import {
   AlterContext,
   handleShort,
-  IAlterContext,
-  ILinkContext,
   LinkContext,
   showTip
 } from "~/routes/store";
@@ -14,15 +15,17 @@ export const handleOnInput = (event: Event, state: ILinkContext) => {
   state.rawUrl = (event.target as HTMLInputElement).value
 }
 
-export const handleEnter = (event: any, state: ILinkContext) => {
+export const handleEnter = (event: any, state: ILinkContext,stateAlter:IAlterContext) => {
   if (event.key.toLowerCase() === 'enter' && state.rawUrl.length > 0) {
     clearState(state)
-    handleShort(state)
+    handleShort(state,stateAlter)
   }
 }
 
 export const UrlInput = component$(() => {
   const state = useContext(LinkContext) as ILinkContext;
+  const alterState = useContext(AlterContext) as IAlterContext;
+
   return (
     <div class="justify-center items-center flex-row flex mt-[30px]">
       <input
@@ -31,7 +34,7 @@ export const UrlInput = component$(() => {
           handleOnInput(event, state);
         }}
         onKeyUp$={(event) => {
-          handleEnter(event, state)
+          handleEnter(event, state,alterState)
         }}
         type="text"
         placeholder="输入令人讨厌的长链接~"

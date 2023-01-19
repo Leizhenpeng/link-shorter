@@ -12,7 +12,7 @@ export default component$(() => {
   useStylesScoped$(indexCss)
   return (
     <div class="w-full">
-      <SloganHan class={`flex justify-center w-full mt-[140px] mb-4 opacity-80`}></SloganHan>
+      <SloganHan class={`flex justify-center w-full mt-[140px] mb-4 opacity-100`}></SloganHan>
       <InputStore>
         <Alter/>
         <UrlInput />

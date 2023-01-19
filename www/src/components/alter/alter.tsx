@@ -17,7 +17,9 @@ export const typeMap = {
 
 
 
-
+export function closeNow(store: IAlterContext) {
+    store.show = false;
+}
 export const Alter = component$(() => {
     useStylesScoped$(styles);
     const store = useContext(AlterContext) as IAlterContext
@@ -53,6 +55,13 @@ export const Alter = component$(() => {
                             <span>
                                 {store.message}
                             </span>
+                        </div>
+                        <div className="flex-none">
+                            <button className="btn btn-sm"
+                                onClick$={() => {
+                                    closeNow(store)
+                                }}
+                            >知道啦</button>
                         </div>
                     </div>
                 )

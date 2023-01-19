@@ -52,3 +52,7 @@
 2023-01-19 10:38:28|42.840541ms|200|POST|/short|::1|66 B|45 B|{"link":"https://cn.vitejs.dev/guide/env-and-mode.html#env-files"}|
 2023-01-19 10:39:17|329.042µs|204|OPTIONS|/short|::1|0 B|0 B||
 2023-01-19 10:39:17|45.159292ms|200|POST|/short|::1|66 B|45 B|{"link":"https://cn.vitejs.dev/guide/env-and-mode.html#env-files"}|
+2023-01-19 19:30:36|678.875µs|200|POST|/short|::1|29 B|48 B|{"link":"link-shorter"}|
+2023-01-19 19:30:40|40.6905ms|200|POST|/short|::1|60 B|45 B|{"link":"https://github.com/Leizhenpeng/link-shorter"}|
+2023-01-19 19:32:15|45.459µs|204|OPTIONS|/short|::1|0 B|0 B||
+2023-01-19 19:32:15|39.104417ms|200|POST|/short|::1|74 B|45 B|{"link":"https://stackoverflow.com/questions/8660209/how-to-validate-url"}|

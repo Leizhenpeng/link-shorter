@@ -10,6 +10,8 @@ export interface ResultProps {
 export const Result = component$(() => {
   const store = useContext(LinkContext) as ILinkContext;
   return (
+    <>
+      {store.ifShowResult&&
     <div>
       <div class="w-full flex justify-center">
         <div class="mt-10 text-lg font-bold link link-primary">{ store.shortUrl }</div>
@@ -35,5 +37,7 @@ export const Result = component$(() => {
         </ul>
       </div>
     </div>
+      }
+    </>
   );
 });

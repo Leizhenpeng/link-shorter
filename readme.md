@@ -1,10 +1,9 @@
 <p align='center'>
-  <img src='./doc/img.png' alt='Shorten Link' width='600'/>
+  <img src='./doc/img.png' alt='Shorten Link' width='1000'/>
 </p>
 
 <p align='center'>
 缩短网址，让分享更简单
-
 <br>
  Shorten Link, Make Sharing Simpler
 </p>

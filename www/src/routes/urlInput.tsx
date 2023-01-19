@@ -1,24 +1,29 @@
 import { component$, useContext } from "@builder.io/qwik";
 import type {
   IAlterContext,
-  ILinkContext} from "~/routes/store";
+  ILinkContext} from "~/store";
 import {
   AlterContext,
   handleShort,
   LinkContext,
-  showTip
-} from "~/routes/store";
-import { clearState } from "../../routes/store";
+} from "~/store";
+import { clearState } from "../store";
 
 
 export const handleOnInput = (event: Event, state: ILinkContext) => {
   state.rawUrl = (event.target as HTMLInputElement).value
 }
 
+export const shortUrl = (state: ILinkContext, alterState: IAlterContext) => {
+  state.ifLoading = true;
+  clearState(state)
+  handleShort(state,alterState).finally(() => {
+    state.ifLoading = false
+  })
+}
 export const handleEnter = (event: any, state: ILinkContext,stateAlter:IAlterContext) => {
   if (event.key.toLowerCase() === 'enter' && state.rawUrl.length > 0) {
-    clearState(state)
-    handleShort(state,stateAlter)
+    shortUrl(state,stateAlter)
   }
 }
 
@@ -50,7 +55,7 @@ export const Btn = component$(() => {
   const alterState = useContext(AlterContext) as IAlterContext;
   return <div> <button
     onClick$={() => {
-      showTip(alterState, 'success', '成功',)
+      shortUrl(state,alterState)
     }}
     class={`ml-2 text-lg min-w-[100px] btn btn-primary text-white ${state.ifLoading ? 'loading' : ''}`}>转换</button></div>
 });

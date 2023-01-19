@@ -41,11 +41,9 @@ export  const composeShortUrl = (shortKey: string) => {
     return baseUrl + '/u/' + shortKey;
 }
 export const handleShort = async (state: ILinkContext,alterState:IAlterContext) => {
-    state.ifLoading = true;
     const pass = ValidateUrl(state.rawUrl);
     if(!pass) {
         state.ifError = true;
-        state.ifLoading = false;
         showTip(alterState, 'warning', '不要胡闹, 请输入正确的链接',5000);
         return;
     }
@@ -54,13 +52,11 @@ export const handleShort = async (state: ILinkContext,alterState:IAlterContext) 
     const res = await reqShort(url)
     if (res.code !== 200) {
         state.ifError = true;
-        state.ifLoading = false;
         showTip(alterState, 'warning', '你很调皮, 这个链接不支持',5000);
         return;
     }
 
     console.log('res', res)
-    state.ifLoading = false;
     state.ifShowResult = true;
     state.shortUrl = composeShortUrl(res.data);
     showTip(alterState, 'success', '很开心, 转换成功啦',3000);

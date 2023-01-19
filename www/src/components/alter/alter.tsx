@@ -4,15 +4,15 @@
 import styles from './alter.css?inline';
 
 import { component$, useClientEffect$, useContext, useSignal, useStylesScoped$, useTask$ } from '@builder.io/qwik';
-import { AlterContext } from '~/routes/store';
-import type { IAlterContext } from '../../routes/store';
+import { AlterContext } from '~/store';
+import type { IAlterContext } from '../../store';
 
 
 export const typeMap = {
     warning: "alert alert-warning shadow-lg",
     error: "alert alert-error shadow-lg",
     info: "alert alert-info shadow-lg",
-    success: "alert alert-success shadow-lg",
+    success: "alert alert-success shadow-lg text-white",
 }
 
 

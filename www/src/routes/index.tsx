@@ -1,10 +1,10 @@
 import { component$, useStylesScoped$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import { Alter } from '~/components/alter/alter';
-import { UrlInput } from '~/components/url-input/urlInput';
-import { InputStore } from './store';
+import { UrlInput } from '~/routes/urlInput';
+import { InputStore } from '../store';
 import indexCss from './index.css?inline';
-import { Result } from "~/components/result/result";
+import { Result } from "~/routes/result";
 import { SloganHan } from "~/components/icons/slogan.ts";
 
 

@@ -43,5 +43,5 @@ export const Btn = component$(() => {
     onClick$={() => {
       showTip(alterState, 'success', '成功',)
     }}
-    class={`ml-2 text-lg min-w-[100px] btn btn-secondary text-white ${state.ifLoading ? 'loading' : ''}`}>转换</button></div>
+    class={`ml-2 text-lg min-w-[100px] btn btn-primary text-white ${state.ifLoading ? 'loading' : ''}`}>转换</button></div>
 });

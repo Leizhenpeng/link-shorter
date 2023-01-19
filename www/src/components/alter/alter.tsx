@@ -7,11 +7,6 @@ import { component$, useClientEffect$, useContext, useSignal, useStylesScoped$, 
 import { AlterContext } from '~/routes/store';
 import type { IAlterContext } from '../../routes/store';
 
-export type AlterProps = {
-    type: "warning" | "error" | "info" | "success";
-    show?: boolean;
-    message: string;
-}
 
 export const typeMap = {
     warning: "alert alert-warning shadow-lg",
@@ -23,7 +18,7 @@ export const typeMap = {
 
 
 
-export const Alter = component$<AlterProps>(() => {
+export const Alter = component$(() => {
     useStylesScoped$(styles);
     const store = useContext(AlterContext) as IAlterContext
     // 3s 后消失

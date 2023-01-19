@@ -10,10 +10,3 @@ header .logo a {
   display: inline-block;
   padding: 10px 10px 7px 20px;
 }
-
-header .slogan{
-  font-size: 30px;
-  color: dark; 
-  margin-right: 30px;
-  font-weight: 300;
-}

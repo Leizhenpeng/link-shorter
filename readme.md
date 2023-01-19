@@ -50,6 +50,17 @@
 <br>
 
 
+## 相关资料
+
+### golang
+
+- [iris-cors](https://docs.iris-go.com/iris/security/cors#the-cors-configuration)
+
+
+### qwik
+
+- [vite-env](https://cn.vitejs.dev/guide/env-and-mode.html#env-files)
+
 
 
 

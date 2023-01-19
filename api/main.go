@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/iris-contrib/middleware/cors"
 	"github.com/kataras/iris/v12"
 	"github.com/spf13/viper"
 	"leizhenpeng/link-shorter-api/controller"
@@ -12,7 +13,12 @@ var db *model.ShorterDB
 
 func main() {
 	readEnv()
-	app := iris.Default() // ...
+	app := iris.New()
+	crs := cors.New(cors.Options{
+		AllowedOrigins:   []string{"*"},
+		AllowCredentials: true,
+	})
+	app.UseRouter(crs)
 	db = model.InitDb(
 		viper.GetString("dbName"),
 		viper.GetString("bucketName"),
@@ -21,8 +27,14 @@ func main() {
 		func() {
 			db.Close()
 		})
+	addCors(app)
 	initApp(app, db)
+
 	app.Listen(":" + viper.GetString("port"))
+}
+
+func addCors(app *iris.Application) {
+
 }
 
 func readEnv() {

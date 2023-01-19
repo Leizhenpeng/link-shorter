@@ -1,4 +1,6 @@
 import { component$, createContext, Slot, useContextProvider, useStore, useTask$ } from '@builder.io/qwik';
+import { postData } from '~/utils/fetch';
+import { NormalizeUrl } from '~/utils/url';
 
 
 export const InputContext = createContext('input');
@@ -16,7 +18,25 @@ export const clearState = (state: IInputContext) => {
     state.ifShowResult = false;
 }
 
-export 
+const baseUrl = import.meta.env.VITE_API_DOMAIN;
+
+const reqShort = (link: string) => {
+    return postData(baseUrl + '/short', {
+       link
+    }) .then(data => {
+        return data;
+    });
+    
+};
+
+export const handleShort = async(state: IInputContext) => {
+    state.ifLoading = true;
+    const url = NormalizeUrl(state.rawUrl)
+    const res = await reqShort(url)
+    console.log('res', res)
+    state.ifLoading = false;
+}
+
 
 export const InputStore = component$(() => {
     const store = useStore<IInputContext>({
@@ -29,7 +49,6 @@ export const InputStore = component$(() => {
     useTask$(
         async (ctx) => {
             ctx.track(() => store.rawUrl);
-            console.log('store.rawUrl',store.rawUrl)
         }
     );
     useContextProvider(InputContext, store);

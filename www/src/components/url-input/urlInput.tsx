@@ -1,10 +1,18 @@
 import { component$, useContext, useResource$, useTask$ } from '@builder.io/qwik';
-import type { IInputContext } from '~/routes/store';
+import { handleShort, IInputContext } from '~/routes/store';
 import { InputContext } from '~/routes/store';
+import { clearState } from '../../routes/store';
 
 
 export const handleOnInput = (event: Event, state: IInputContext) => {
   state.rawUrl = (event.target as HTMLInputElement).value
+}
+
+export const handleEnter = (event: any, state: IInputContext) => {
+  if (event.key.toLowerCase() === 'enter' && state.rawUrl.length > 0) {
+    clearState(state)
+    handleShort(state)
+  }
 }
 
 export const UrlInput = component$(() => {
@@ -14,7 +22,10 @@ export const UrlInput = component$(() => {
       <input
         value={state.rawUrl}
         onInput$={(event) => {
-          handleOnInput(event,state);
+          handleOnInput(event, state);
+        }}
+        onKeyUp$={(event) => {
+          handleEnter(event, state)
         }}
         type="text"
         placeholder="输入令人讨厌的长链接~"
@@ -26,5 +37,6 @@ export const UrlInput = component$(() => {
 
 
 export const Btn = component$(() => {
-  return <div> <button class="ml-2 text-lg btn loading btn-secondary" >转换</button></div>
+  const state = useContext(InputContext) as IInputContext;
+  return <div> <button class={`ml-2 text-lg min-w-[100px] btn btn-secondary text-white ${state.ifLoading ? 'loading' : ''}`}>转换</button></div>
 });

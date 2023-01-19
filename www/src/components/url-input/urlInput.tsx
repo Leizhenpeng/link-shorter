@@ -1,5 +1,5 @@
 import { component$, useContext, useResource$, useTask$ } from '@builder.io/qwik';
-import { handleShort, IInputContext } from '~/routes/store';
+import { AlterContext, handleShort, IAlterContext, IInputContext, showTip } from '~/routes/store';
 import { InputContext } from '~/routes/store';
 import { clearState } from '../../routes/store';
 
@@ -18,7 +18,7 @@ export const handleEnter = (event: any, state: IInputContext) => {
 export const UrlInput = component$(() => {
   const state = useContext(InputContext) as IInputContext;
   return (
-    <div class="justify-center items-center flex-row flex mt-[60px]">
+    <div class="justify-center items-center flex-row flex mt-[30px]">
       <input
         value={state.rawUrl}
         onInput$={(event) => {
@@ -38,5 +38,10 @@ export const UrlInput = component$(() => {
 
 export const Btn = component$(() => {
   const state = useContext(InputContext) as IInputContext;
-  return <div> <button class={`ml-2 text-lg min-w-[100px] btn btn-secondary text-white ${state.ifLoading ? 'loading' : ''}`}>转换</button></div>
+  const alterState = useContext(AlterContext) as IAlterContext;
+  return <div> <button
+    onClick$={() => {
+      showTip(alterState, 'success', '成功',)
+    }}
+    class={`ml-2 text-lg min-w-[100px] btn btn-secondary text-white ${state.ifLoading ? 'loading' : ''}`}>转换</button></div>
 });

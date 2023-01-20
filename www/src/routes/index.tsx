@@ -6,7 +6,6 @@ import { InputStore } from "../store";
 import indexCss from "./index.css?inline";
 import { Result } from "~/routes/result";
 import { Slogan } from "~/routes/Slogan";
-import { Speak } from "qwik-speak";
 
 
 export default component$(() => {

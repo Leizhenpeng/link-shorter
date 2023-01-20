@@ -10,8 +10,9 @@ import {
 } from "~/store";
 import { clearState } from "../store";
 
+import type { SpeakLocale} from "qwik-speak";
 import {
-  $translate as t, Speak, SpeakLocale, useSpeakLocale
+  $translate as t, Speak, useSpeakLocale
 } from "qwik-speak";
 
 export const handleOnInput = (event: Event, state: ILinkContext) => {

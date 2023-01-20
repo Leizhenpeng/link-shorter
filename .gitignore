@@ -24,3 +24,6 @@ go.work
 
 .idea
 
+
+# Local Netlify folder
+.netlify

@@ -8,9 +8,7 @@ import {
 } from "@builder.io/qwik";
 import { postData } from "~/utils/fetch";
 import { NormalizeUrl, ValidateUrl } from "~/utils/url";
-import {
-  $translate as t, SpeakLocale
-} from "qwik-speak";
+import type { SpeakLocale } from "qwik-speak";
 
 
 export const LinkContext = createContext("link");

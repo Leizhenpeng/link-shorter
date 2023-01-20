@@ -49,7 +49,6 @@ func main() {
 		URLMethodParameter: "method",
 	})
 	app.Run(runner, configurator)
-	//app.Listen(":" + viper.GetString("port"))
 }
 
 func addCors(app *iris.Application) {

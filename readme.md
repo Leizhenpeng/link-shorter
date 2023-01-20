@@ -55,10 +55,14 @@
 
 - [iris-cors](https://docs.iris-go.com/iris/security/cors#the-cors-configuration)
 
-
 ### qwik
 
 - [vite-env](https://cn.vitejs.dev/guide/env-and-mode.html#env-files)
+- [qwik-speak](https://github.com/robisim74/qwik-speak)
+- [qwik-init-repo](https://qwik.builder.io/docs/getting-started/)
+- [qwik-state-management](https://qwik.builder.io/docs/components/state/)
+- [qwik-component](https://qwik.builder.io/docs/components/overview/)
+- [qwik-lite-component](https://qwik.builder.io/docs/components/lite-components/)
 
 
 

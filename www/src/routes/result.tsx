@@ -29,12 +29,12 @@ export const Result = component$(() => {
                  } }
             >{ store.shortUrl }</div>
           </div>
-          <div className={ `action flex justify-center mt-4` }>
-            <ul className="menu menu-horizontal bg-base-100 rounded-box">
+          <div class={ `action flex justify-center mt-4` }>
+            <ul class="menu menu-horizontal bg-base-100 rounded-box">
 
               <li>
                 <a
-                  className="tooltip" data-tip="打开"
+                  class="tooltip" data-tip="打开"
                   onClick$={ () => {
                     OpenUrl(store.shortUrl);
                   } }
@@ -44,7 +44,7 @@ export const Result = component$(() => {
               </li>
               <li>
                 <a
-                  className=" tooltip" data-tip=" 复制"
+                  class=" tooltip" data-tip=" 复制"
                   onClick$={ () => {
                     CopyToClipboard(store.shortUrl).then(
                       () => {
@@ -57,7 +57,7 @@ export const Result = component$(() => {
                 </a>
               </li>
               <li>
-                <a className=" tooltip" data-tip=" 二维码"
+                <a class=" tooltip" data-tip=" 二维码"
                    onClick$={ () => {
                      CopyToClipboard(store.shortUrl).then(
                        () => {
@@ -69,7 +69,7 @@ export const Result = component$(() => {
               </li>
               <li>
                 <a
-                  className=" tooltip" data-tip=" Twitter"
+                  class=" tooltip" data-tip=" Twitter"
                   onClick$={ () => {
                     ShareTwitter(store.shortUrl);
                   } }

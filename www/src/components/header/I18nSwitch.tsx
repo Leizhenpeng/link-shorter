@@ -17,7 +17,7 @@ export function LangChoose(props: ILanguageChoose) {
         src={ props.svg }
         { ...props }
       />
-      <span className="flex flex-1 justify-between"> { props.language } </span>
+      <span class="flex flex-1 justify-between"> { props.language } </span>
     </button>
     { " " }
   </li>;
@@ -27,10 +27,10 @@ export const I18nSwitch = component$(() => {
   const ctx = useSpeakContext();
 
 
-  return <div className="dropdown dropdown-end">
-    <div tabIndex={ 0 } className="btn btn-ghost gap-1 normal-case">
+  return <div class="dropdown dropdown-end">
+    <div tabIndex={ 0 } class="btn btn-ghost gap-1 normal-case">
       <svg
-        className="inline-block h-6 fill-current"
+        class="inline-block h-6 fill-current"
         height="20"
         viewBox="0 0 512 512"
       >
@@ -42,14 +42,14 @@ export const I18nSwitch = component$(() => {
       <svg
         width="12px"
         height="12px"
-        className="ml-1 hidden h-3 w-3 fill-current opacity-60 sm:inline-block"
+        class="ml-1 hidden h-3 w-3 fill-current opacity-60 sm:inline-block"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 2048 2048"
       >
         <path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path>
       </svg>
     </div>
-    <ul className="menu dropdown-content p-2 shadow bg-base-100 rounded-box w-40 mt-1"
+    <ul class="menu dropdown-content p-2 shadow bg-base-100 rounded-box w-40 mt-1"
         tabIndex={ 0 }>
       {
         ctx.config.supportedLocales.map((locale) => {

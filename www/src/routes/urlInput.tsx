@@ -9,6 +9,9 @@ import {
 } from "~/store";
 import { clearState } from "../store";
 
+import {
+  $translate as t,
+} from 'qwik-speak';
 
 export const handleOnInput = (event: Event, state: ILinkContext) => {
   state.rawUrl = (event.target as HTMLInputElement).value
@@ -49,7 +52,6 @@ export const UrlInput = component$(() => {
   );
 });
 
-
 export const Btn = component$(() => {
   const state = useContext(LinkContext) as ILinkContext;
   const alterState = useContext(AlterContext) as IAlterContext;
@@ -57,5 +59,5 @@ export const Btn = component$(() => {
     onClick$={() => {
       shortUrl(state,alterState)
     }}
-    class={`ml-2 text-lg min-w-[100px] btn btn-primary text-white ${state.ifLoading ? 'loading' : ''}`}>转换</button></div>
+    class={`ml-2 text-lg min-w-[100px] btn btn-primary text-white ${state.ifLoading ? 'loading' : ''}`}>{ t('short.btnName@@转换') }</button></div>
 });

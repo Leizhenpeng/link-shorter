@@ -15,6 +15,7 @@ specifiers:
   node-fetch: 3.3.0
   postcss: ^8.4.16
   prettier: 2.8.1
+  qwik-speak: ^0.5.0
   tailwindcss: ^3.1.8
   typescript: 4.9.4
   undici: 5.14.0
@@ -38,6 +39,7 @@ devDependencies:
   node-fetch: 3.3.0
   postcss: 8.4.21
   prettier: 2.8.1
+  qwik-speak: 0.5.0_@builder.io+qwik@0.16.2
   tailwindcss: 3.2.4_postcss@8.4.21
   typescript: 4.9.4
   undici: 5.14.0
@@ -2154,6 +2156,16 @@ packages:
   /quick-lru/5.1.1:
     resolution: {integrity: sha512-WuyALRjWPDGtt/wzJiadO5AXY+8hZ80hVpe6MyivgraREW751X3SbhRvG3eLKOYN+8VEvqLcf3wdnt44Z4S4SA==}
     engines: {node: '>=10'}
+
+  /qwik-speak/0.5.0_@builder.io+qwik@0.16.2:
+    resolution: {integrity: sha512-VbewbvVaO05GWyRKjwpQietlXenuKGFCLjoOfGGXx4IwBAvP3uYi3RolFTbjKV1x8Aj+/jtMj7y3zrOCO6YFDA==}
+    engines: {node: '>=16'}
+    hasBin: true
+    peerDependencies:
+      '@builder.io/qwik': '>=0.15.1'
+    dependencies:
+      '@builder.io/qwik': 0.16.2_undici@5.14.0
+    dev: true
 
   /read-cache/1.0.0:
     resolution: {integrity: sha512-Owdv/Ft7IjOgm/i0xvNDZ1LrRANRfew4b2prF3OWMQLxLfu3bS8FVhCsrSCMK4lR56Y9ya+AThoTpDCTxCmpRA==}

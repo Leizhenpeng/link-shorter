@@ -63,6 +63,7 @@
 - [qwik-state-management](https://qwik.builder.io/docs/components/state/)
 - [qwik-component](https://qwik.builder.io/docs/components/overview/)
 - [qwik-lite-component](https://qwik.builder.io/docs/components/lite-components/)
+- [svg-to-jsx](https://www.svgviewer.dev/svg-to-react-jsx)
 
 
 

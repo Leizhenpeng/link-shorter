@@ -1,3 +1,2 @@
-port: 8081
 dbName: "shorter.db"
 bucketName: "link"

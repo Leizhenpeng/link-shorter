@@ -1,6 +1,9 @@
 package main
 
 import (
+	"flag"
+	"fmt"
+	"github.com/iris-contrib/gateway"
 	"github.com/iris-contrib/middleware/cors"
 	"github.com/kataras/iris/v12"
 	"github.com/spf13/viper"
@@ -11,7 +14,12 @@ import (
 
 var db *model.ShorterDB
 
+var (
+	port = flag.Int("port", -1, "specify a port")
+)
+
 func main() {
+	flag.Parse()
 	readEnv()
 	app := iris.New()
 	crs := cors.New(cors.Options{
@@ -30,7 +38,18 @@ func main() {
 	addCors(app)
 	initApp(app, db)
 
-	app.Listen(":" + viper.GetString("port"))
+	if *port != -1 {
+		portNow := fmt.Sprintf(":%d", *port)
+		app.Listen(portNow)
+		return
+	}
+
+	runner, configurator := gateway.New(gateway.Options{
+		URLPathParameter:   "path",
+		URLMethodParameter: "method",
+	})
+	app.Run(runner, configurator)
+	//app.Listen(":" + viper.GetString("port"))
 }
 
 func addCors(app *iris.Application) {

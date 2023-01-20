@@ -3,6 +3,7 @@ module leizhenpeng/link-shorter-api
 go 1.18
 
 require (
+	github.com/iris-contrib/gateway v0.0.0-20221224053953-0bce4dbb4e2f
 	github.com/iris-contrib/middleware/cors v0.0.0-20221224052405-ebfc293d7869
 	github.com/kataras/iris/v12 v12.2.0-beta7
 	github.com/matoous/go-nanoid v1.5.0
@@ -17,6 +18,7 @@ require (
 	github.com/Joker/jade v1.1.3 // indirect
 	github.com/Shopify/goreferrer v0.0.0-20220729165902-8cddb4f5de06 // indirect
 	github.com/andybalholm/brotli v1.0.4 // indirect
+	github.com/aws/aws-lambda-go v1.36.1 // indirect
 	github.com/aymerick/douceur v0.2.0 // indirect
 	github.com/eknkc/amber v0.0.0-20171010120322-cdade1c07385 // indirect
 	github.com/fatih/structs v1.1.0 // indirect

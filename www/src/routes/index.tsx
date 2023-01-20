@@ -5,15 +5,16 @@ import { UrlInput } from "~/routes/urlInput";
 import { InputStore } from "../store";
 import indexCss from "./index.css?inline";
 import { Result } from "~/routes/result";
-import { SloganHan } from "~/components/icons/slogan.ts";
+import { Slogan } from "~/routes/Slogan";
 
 
 export default component$(() => {
   useStylesScoped$(indexCss);
   return (
     <div class="w-full">
-      <SloganHan
-        class={ `flex justify-center w-full mt-[140px] mb-4 opacity-100` }></SloganHan>
+      {/*<SloganHan*/}
+      {/*  class={ `flex justify-center w-full mt-[140px] mb-4 opacity-100` }></SloganHan>*/}
+      <Slogan class={ `flex justify-center w-full mt-[140px] mb-4 opacity-100` }></Slogan>
       <InputStore>
         <Alter />
         <UrlInput />

@@ -1,10 +1,13 @@
-import { component$ } from "@builder.io/qwik";
+import { component$, useClientEffect$ } from "@builder.io/qwik";
+import type { SpeakLocale } from "qwik-speak";
 import { changeLocale, useSpeakContext } from "qwik-speak";
+import { config } from "~/speak-config";
 
 interface ILanguageChoose {
   language: string;
   svg: string;
 }
+
 
 export function LangChoose(props: ILanguageChoose) {
   return <li>
@@ -23,9 +26,26 @@ export function LangChoose(props: ILanguageChoose) {
   </li>;
 }
 
+
+export const setLocale = (locale: SpeakLocale) => {
+  localStorage.setItem("locale", JSON.stringify(locale));
+};
+
+export const getLocale = () => {
+  return JSON.parse(localStorage.getItem("locale") || "null") || config.defaultLocale;
+};
+
 export const I18nSwitch = component$(() => {
   const ctx = useSpeakContext();
 
+  useClientEffect$(async () => {
+    const locale = getLocale() as SpeakLocale;
+    changeLocale(locale, ctx).then(
+      () => {
+        setLocale(locale);
+      }
+    );
+  });
 
   return <div class="dropdown dropdown-end">
     <div tabIndex={ 0 } class="btn btn-ghost gap-1 normal-case">
@@ -54,8 +74,11 @@ export const I18nSwitch = component$(() => {
       {
         ctx.config.supportedLocales.map((locale) => {
           return (
-            <div onClick$={ () => { changeLocale(locale, ctx).then(() => {
-            }); } }>
+            <div onClick$={ () => {
+              changeLocale(locale, ctx).then(() => {
+                setLocale(locale)
+              });
+            } }>
               <LangChoose
                 language={ locale.units?.name as string }
                 svg={ locale.units?.svg as string } />

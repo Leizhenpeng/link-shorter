@@ -2,7 +2,7 @@ import { $ } from "@builder.io/qwik";
 import { isServer } from "@builder.io/qwik/build";
 import type { LoadTranslationFn, SpeakConfig, TranslationFn } from "qwik-speak";
 
-const AllLocale = [
+export const AllLocale = [
   { lang: "zh-CN", currency: "CNY", timeZone: "Asia/Shanghai" ,
     units: {
       svg: "https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.0/svg/1f1ec-1f1e7.svg",

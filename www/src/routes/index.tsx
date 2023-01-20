@@ -6,23 +6,20 @@ import { InputStore } from "../store";
 import indexCss from "./index.css?inline";
 import { Result } from "~/routes/result";
 import { SloganHan } from "~/components/icons/slogan.ts";
-import { Speak } from "qwik-speak";
 
 
 export default component$(() => {
   useStylesScoped$(indexCss);
   return (
-    <Speak assets={ ["short"] }>
-      <div class="w-full">
-        <SloganHan
-          class={ `flex justify-center w-full mt-[140px] mb-4 opacity-100` }></SloganHan>
-        <InputStore>
-          <Alter />
-          <UrlInput />
-          <Result />
-        </InputStore>
-      </div>
-    </Speak>
+    <div class="w-full">
+      <SloganHan
+        class={ `flex justify-center w-full mt-[140px] mb-4 opacity-100` }></SloganHan>
+      <InputStore>
+        <Alter />
+        <UrlInput />
+        <Result />
+      </InputStore>
+    </div>
   );
 });
 

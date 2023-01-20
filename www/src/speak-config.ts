@@ -2,6 +2,7 @@ import { $ } from "@builder.io/qwik";
 import { isServer } from "@builder.io/qwik/build";
 import type { LoadTranslationFn, SpeakConfig, TranslationFn } from "qwik-speak";
 
+
 export const AllLocale = [
   { lang: "zh-CN", currency: "CNY", timeZone: "Asia/Shanghai" ,
     units: {
@@ -17,7 +18,7 @@ export const AllLocale = [
 export const config: SpeakConfig = {
   defaultLocale: AllLocale.find((locale) => locale.lang === "zh-CN")!,
   supportedLocales: AllLocale,
-  assets: ["app"],
+  assets: ["short","alter"],
 };
 
 export const loadTranslation$: LoadTranslationFn = $(

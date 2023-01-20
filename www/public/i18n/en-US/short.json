@@ -1,5 +1,10 @@
 {
   "short": {
-    "btnName": "Short"
+    "btnName": "Short",
+    "copyTip": "Copy",
+    "inputPlaceholder": "Paste the URL to be shortened ~",
+    "openTip": "Open Link",
+    "qrcodeTip": "Qrcode",
+    "twitter": "Twitter"
   }
 }

@@ -1,5 +1,10 @@
 {
   "short": {
-    "btnName": "转换"
+    "btnName": "转换",
+    "copyTip": "复制",
+    "inputPlaceholder": "输入令人讨厌的长链接~",
+    "openTip": "打开",
+    "qrcodeTip": "二维码",
+    "twitter": "推特"
   }
 }

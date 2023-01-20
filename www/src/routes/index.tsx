@@ -6,21 +6,21 @@ import { InputStore } from "../store";
 import indexCss from "./index.css?inline";
 import { Result } from "~/routes/result";
 import { Slogan } from "~/routes/Slogan";
+import { Speak } from "qwik-speak";
 
 
 export default component$(() => {
   useStylesScoped$(indexCss);
   return (
-    <div class="w-full">
-      {/*<SloganHan*/}
-      {/*  class={ `flex justify-center w-full mt-[140px] mb-4 opacity-100` }></SloganHan>*/}
-      <Slogan class={ `flex justify-center w-full mt-[140px] mb-4 opacity-100` }></Slogan>
-      <InputStore>
-        <Alter />
-        <UrlInput />
-        <Result />
-      </InputStore>
-    </div>
+      <div class="w-full">
+        <Slogan
+          class={ `flex justify-center w-full mt-[140px] mb-4 opacity-100` }></Slogan>
+        <InputStore>
+          <Alter />
+          <UrlInput />
+          <Result />
+        </InputStore>
+      </div>
   );
 });
 

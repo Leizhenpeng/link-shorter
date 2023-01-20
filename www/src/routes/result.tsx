@@ -10,7 +10,9 @@ import {
 import { OpenUrl } from "~/utils/url";
 import { CopyToClipboard } from "~/utils/copy";
 import { GenQrcode, ShareTwitter } from "~/utils/share";
-
+import {
+  $translate as t, Speak, useSpeakLocale
+} from "qwik-speak";
 export interface ResultProps {
 }
 
@@ -18,11 +20,13 @@ export interface ResultProps {
 export const Result = component$(() => {
   const store = useContext(LinkContext) as ILinkContext;
   const alterState = useContext(AlterContext) as IAlterContext;
+  const locale  = useSpeakLocale()
+  const ifCn = locale.lang === "zh-CN";
   return (
-    <>
-      { store.ifShowResult &&
+    <Speak assets={ ["short", "alter"] }>
+      { store.ifShowResult ?
         <div>
-          <div class="w-full flex justify-center">
+          <div class="w-100 flex justify-center">
             <div class="mt-10 text-lg font-bold link link-primary"
                  onClick$={ () => {
                    OpenUrl(store.shortUrl);
@@ -34,7 +38,7 @@ export const Result = component$(() => {
 
               <li>
                 <a
-                  class="tooltip" data-tip="打开"
+                  class="tooltip" data-tip={t("short.openTip@@打开")}
                   onClick$={ () => {
                     OpenUrl(store.shortUrl);
                   } }
@@ -44,11 +48,11 @@ export const Result = component$(() => {
               </li>
               <li>
                 <a
-                  class=" tooltip" data-tip=" 复制"
+                  class=" tooltip" data-tip={t("short.copyTip@@复制")}
                   onClick$={ () => {
                     CopyToClipboard(store.shortUrl).then(
                       () => {
-                        showTip(alterState, "success", " 复制成功", 2000);
+                        showTip(alterState, "success",ifCn?"复制成功":"Copy short link Successfully ~" , 2000);
                       }
                     );
                   } }
@@ -57,7 +61,7 @@ export const Result = component$(() => {
                 </a>
               </li>
               <li>
-                <a class=" tooltip" data-tip=" 二维码"
+                <a class=" tooltip" data-tip={t("short.qrcodeTip@@二维码")}
                    onClick$={ () => {
                      CopyToClipboard(store.shortUrl).then(
                        () => {
@@ -69,7 +73,7 @@ export const Result = component$(() => {
               </li>
               <li>
                 <a
-                  class=" tooltip" data-tip=" Twitter"
+                  class=" tooltip" data-tip={t("short.twitter@@推特")}
                   onClick$={ () => {
                     ShareTwitter(store.shortUrl);
                   } }
@@ -79,8 +83,9 @@ export const Result = component$(() => {
               </li>
             </ul>
           </div>
-        </div>
+        </div> :
+        <div w-full/>
       }
-    </>
+    </Speak>
   );
 });

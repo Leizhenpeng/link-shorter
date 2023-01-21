@@ -30,3 +30,4 @@ go.work
 
 .s
 .vscode
+.DS_Store

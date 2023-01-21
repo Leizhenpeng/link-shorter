@@ -23,4 +23,4 @@ go.work
 
 .idea
 *.db
-link-shorter-api
+functions

@@ -56,13 +56,14 @@ func addCors(app *iris.Application) {
 }
 
 func readEnv() {
-	viper.SetConfigFile("config.yaml")
-	err := viper.ReadInConfig()
-	if err != nil {
-		panic(err)
-	}
+	//viper.SetConfigFile("config.yaml")
+	//err := viper.ReadInConfig()
+	//if err != nil {
+	//	panic(err)
+	//}
+	viper.Set("dbName", "shorter.db")
+	viper.Set("bucketName", "link")
 }
-
 func initApp(app *iris.Application, db *model.ShorterDB) {
 	ss := service.ShorterService{
 		DB: db,

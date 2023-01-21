@@ -3,7 +3,6 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/iris-contrib/gateway"
 	"github.com/iris-contrib/middleware/cors"
 	"github.com/kataras/iris/v12"
 	"github.com/spf13/viper"
@@ -15,7 +14,7 @@ import (
 var db *model.ShorterDB
 
 var (
-	port = flag.Int("port", -1, "specify a port")
+	mode = flag.String("mode", "dev", "mode to run")
 )
 
 func main() {
@@ -35,34 +34,21 @@ func main() {
 		func() {
 			db.Close()
 		})
-	addCors(app)
 	initApp(app, db)
-
-	if *port != -1 {
-		portNow := fmt.Sprintf(":%d", *port)
-		app.Listen(portNow)
-		return
-	}
-
-	runner, configurator := gateway.New(gateway.Options{
-		URLPathParameter:   "path",
-		URLMethodParameter: "method",
-	})
-	app.Run(runner, configurator)
-}
-
-func addCors(app *iris.Application) {
+	portNow := fmt.Sprintf(":%s", viper.GetString("port"))
+	app.Listen(portNow)
+	return
 
 }
 
 func readEnv() {
-	//viper.SetConfigFile("config.yaml")
-	//err := viper.ReadInConfig()
-	//if err != nil {
-	//	panic(err)
-	//}
-	viper.Set("dbName", "shorter.db")
-	viper.Set("bucketName", "link")
+	viper.SetConfigFile("config.yaml")
+	err := viper.ReadInConfig()
+	if err != nil {
+		panic(err)
+	}
+	//viper.Set("dbName", "shorter.db")
+	//viper.Set("bucketName", "link")
 }
 func initApp(app *iris.Application, db *model.ShorterDB) {
 	ss := service.ShorterService{
@@ -70,5 +56,4 @@ func initApp(app *iris.Application, db *model.ShorterDB) {
 	}
 	cc := controller.ShorterCtl{Service: &ss}
 	cc.Register(app)
-
 }

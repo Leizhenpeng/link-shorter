@@ -1,0 +1,41 @@
+{
+  "domainName": "link-shorter-api.link-shorter-api.1287614360850154.cn-hangzhou.fc.devsapp.net",
+  "accountId": "1287614360850154",
+  "protocol": "HTTP",
+  "certConfig": {
+    "certName": null,
+    "privateKey": null,
+    "certificate": null
+  },
+  "tlsConfig": {
+    "minVersion": null,
+    "maxVersion": null,
+    "cipherSuites": null
+  },
+  "apiVersion": "2016-08-15",
+  "routeConfig": {
+    "routes": [
+      {
+        "path": "/*",
+        "accountId": null,
+        "serviceName": "link-shorter-api",
+        "functionName": "link-shorter-api",
+        "qualifier": null,
+        "methods": [
+          "GET",
+          "POST",
+          "OPTIONS"
+        ],
+        "rewriteConfig": null,
+        "innerRewriteConfig": null
+      }
+    ]
+  },
+  "createdTime": "2023-01-21T01:44:57Z",
+  "lastModifiedTime": "2023-01-21T03:16:24Z",
+  "keepFullPath": true,
+  "subdomainCount": null,
+  "wafConfig": {
+    "enableWAF": false
+  }
+}

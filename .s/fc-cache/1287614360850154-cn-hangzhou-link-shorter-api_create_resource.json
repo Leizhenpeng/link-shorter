@@ -1,0 +1,9 @@
+{
+  "serviceName": "link-shorter-api",
+  "functionNames": [
+    "link-shorter-api/link-shorter-api"
+  ],
+  "domains": [
+    "link-shorter-api.link-shorter-api.1287614360850154.cn-hangzhou.fc.devsapp.net"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "statefulConfig": {
+    "serviceName": "link-shorter-api",
+    "description": "Serverless Devs Website Service",
+    "role": "",
+    "logConfig": {
+      "project": "",
+      "logstore": "",
+      "enableRequestMetrics": false,
+      "enableInstanceMetrics": false,
+      "logBeginRule": "None"
+    },
+    "serviceId": "fc539fd9-ff59-4ccb-bf1b-035138fc6e76",
+    "createdTime": "2023-01-21T01:44:36Z",
+    "lastModifiedTime": "2023-01-21T03:16:22Z",
+    "vpcConfig": {
+      "vpcId": "",
+      "vSwitchIds": [],
+      "securityGroupId": "",
+      "role": "",
+      "anytunnelViaENI": null
+    },
+    "internetAccess": true,
+    "nasConfig": {
+      "userId": -1,
+      "groupId": -1,
+      "mountPoints": []
+    },
+    "ossMountConfig": {
+      "mountPoints": []
+    },
+    "vendorConfig": null,
+    "tracingConfig": {
+      "type": null,
+      "params": null,
+      "jaegerConfig": null
+    },
+    "name": "link-shorter-api"
+  }
+}

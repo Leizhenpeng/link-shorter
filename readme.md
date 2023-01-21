@@ -11,13 +11,13 @@
 <br>
 
 <p align='center'>
-<a href="https://vitesse.netlify.app/">Live Demo</a>
+<a href="https://ss-link.netlify.app/">Live Demo</a>
 </p>
 
 <br>
 
 <p align='center'>
-<b>English</b> | <a href="https://github.com/antfu/vitesse/blob/main/README.zh-CN.md">简体中文</a>
+<b>简体中文</b> | <a href="https://github.com/Leizhenpeng/link-shorter/blob/main/README.md">English</a>
 <!-- Contributors: Thanks for getting interested, however we DON'T accept new transitions to the README, thanks. -->
 </p>
 

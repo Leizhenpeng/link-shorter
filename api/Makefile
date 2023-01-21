@@ -1,6 +1,7 @@
 build:
-	go build -o ./functions/link-shorter-api
-	chmod +x ./functions/link-shorter-api
-
+	GO111MODULE=on GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o target/main main.go
+	cp config.yaml target/config.yaml
 dev:
 	go run main.go --port 8081
+
+

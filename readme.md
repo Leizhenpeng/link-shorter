@@ -36,7 +36,6 @@
 
 - 😃 [daisyui](https://daisyui.com/) 使用 Tailwind CSS 但少写类名
 
-- 🌍 [I18n](https://robisim74.gitbook.io/qwik-speak/) 支持多语言
 
 - ☁️ Deploy on Netlify, zero-config
 
@@ -46,8 +45,12 @@
 
 <br>
 
-## 功能介绍
-### iris
+## 功能介绍-qwik部分
+- 全局变量管理
+- [I18n](https://robisim74.gitbook.io/qwik-speak/)多语言切换
+
+
+## 功能介绍-iris部分
 ### 记录请求日志，写入本地文件
 
 ```json
@@ -102,6 +105,8 @@ func TestAdminApi(t *testing.T) {
 ### golang
 
 - [iris-cors](https://docs.iris-go.com/iris/security/cors#the-cors-configuration)
+- [iris-jwt](https://github.com/iris-contrib/middleware/tree/master/jwt)
+- [iris-test](https://docs.iris-go.com/iris/contents/testing)
 
 ### qwik
 

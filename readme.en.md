@@ -1,5 +1,5 @@
 <p align='center'>
-  <img src='./doc/img.png' alt='Shorten Link' width='1000'/>
+  <img src='./doc/img.en.png' alt='Shorten Link' width='1000'/>
 </p>
 
 <p align='center'>
@@ -17,24 +17,23 @@
 <br>
 
 <p align='center'>
-<b>简体中文</b> | <a href="https://github.com/Leizhenpeng/link-shorter/blob/master/readme.en.md">English</a>
+<b>English</b> | <a href="https://github.com/Leizhenpeng/link-shorter/blob/master/readme.md">简体中文</a>
 <!-- Contributors: Thanks for getting interested, however we DON'T accept new transitions to the README, thanks. -->
 </p>
 
 <br>
 
-
 ## Features
 
-- ⚡️ [qwik](https://qwik.builder.io/) 从源头上加速SSR应用
+- ⚡️ [qwik](https://qwik.builder.io/) Accelerate our SSR application from the source
 
-- 📦 [iris](https://www.iris-go.com/) 一个高性能、易用且功能强大的Go语言Web框架
+- 📦 [iris](https://www.iris-go.com/) A High Performance, Easy to Use and Powerful Go Language Web Framework
 
-- 🔎 [bolt](https://github.com/boltdb/bolt) 一个高效的、嵌入式的、持久化的键值存储数据库, 只是不想用太重的mysql和redis~
+- 🔎 [bolt](https://github.com/boltdb/bolt) An efficient, embedded, and persistent key-value storage database, just don't want to use too heavy mysql and redis
 
-- 🎨 [TaliWindCss](https://tailwindcss.com/) 原子类CSS框架的祖师爷
+- 🎨 [TaliWindCss](https://tailwindcss.com/) The Patriarch of the Atomic CSS Framework
 
-- 😃 [daisyui](https://daisyui.com/) 使用 Tailwind CSS 但少写类名
+- 😃 [daisyui](https://daisyui.com/) Use Tailwind CSS but write less class names
 
 
 - ☁️ Deploy on Netlify, zero-config
@@ -45,13 +44,15 @@
 
 <br>
 
-## 功能介绍-qwik部分
-- 全局变量管理
-- [I18n](https://robisim74.gitbook.io/qwik-speak/)多语言切换
+## Function introduction - qwik part
 
+- Global variable management
 
-## 功能介绍-iris部分
-### 记录请求日志，写入本地文件
+- [I18n](https://robisim74.gitbook.io/qwik-speak/) multi-language switching
+
+## Function introduction - iris part
+
+### Record the request log and write it to a local file
 
 ```json
 {
@@ -67,7 +68,7 @@
 ```
 
 
-### 管理端JWT身份校验
+### Management side JWT identity verification
 
 ```go
 app.Post("/login", s.Login)
@@ -80,7 +81,7 @@ admin := app.Party("/admin")
 }
 ```
 
-### 路由自测，成为一名可爱的后端
+### Routing self-test, become a cute backend
 ```go
 var commonSchema = `{
 			"type": "object",
@@ -100,7 +101,7 @@ func TestAdminApi(t *testing.T) {
 ```
 
 
-## 相关资料
+## Relevant information
 
 ### golang
 

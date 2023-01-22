@@ -38,8 +38,6 @@
 
 - 🌍 [I18n](https://robisim74.gitbook.io/qwik-speak/) 支持多语言
 
-[//]: # (- ⚙️ Unit Testing with [Vitest]&#40;https://github.com/vitest-dev/vitest&#41;, E2E Testing with [Cypress]&#40;https://cypress.io/&#41; on [GitHub Actions]&#40;https://github.com/features/actions&#41;)
-
 - ☁️ Deploy on Netlify, zero-config
 
 - 🦾 Golang, of course
@@ -47,6 +45,56 @@
 - 🦾 TypeScript, of course
 
 <br>
+
+## 功能介绍
+### iris
+### 记录请求日志，写入本地文件
+
+```json
+{
+  "timestamp": "2023-01-21 21:15:03",
+  "latency": 405000,
+  "code": 200,
+  "method": "GET",
+  "path": "/ping",
+  "ip": "::1",
+  "bytes_sent": 4
+}
+
+```
+
+
+### 管理端JWT身份校验
+
+```go
+app.Post("/login", s.Login)
+admin := app.Party("/admin")
+{
+    admin.UseRouter(jwtMiddle.Serve)
+    admin.Post("/flush", s.Flush)
+    admin.Get("/all", s.All)
+    admin.Post("/del", s.DelOne)
+}
+```
+
+### 路由自测，成为一名可爱的后端
+```go
+var commonSchema = `{
+			"type": "object",
+			"properties": {
+				"code":  {"type": "number"},
+				"msg":   {"type": "string"},
+				"data":  {"type": ["object","string"]}},
+			"required": ["code", "msg", "data"]
+		}`
+    
+func TestAdminApi(t *testing.T) {
+	app := NewApp()
+	e := httptest.New(t, app)
+	e.GET("/admin/all").Expect().Status(httptest.StatusOK).
+		JSON().Schema(commonSchema)
+}
+```
 
 
 ## 相关资料
@@ -64,7 +112,6 @@
 - [qwik-component](https://qwik.builder.io/docs/components/overview/)
 - [qwik-lite-component](https://qwik.builder.io/docs/components/lite-components/)
 - [svg-to-jsx](https://www.svgviewer.dev/svg-to-react-jsx)
-
 
 
 

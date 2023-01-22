@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/iris-contrib/middleware/cors"
 	"github.com/kataras/iris/v12"
+	"github.com/kataras/iris/v12/middleware/accesslog"
 	"github.com/spf13/viper"
 	"leizhenpeng/link-shorter-api/controller"
 	"leizhenpeng/link-shorter-api/model"
@@ -18,37 +19,46 @@ var (
 )
 
 func main() {
+	app := NewApp()
+	portNow := fmt.Sprintf(":%s", viper.GetString("port"))
+	app.Listen(portNow)
+	return
+}
+
+func NewApp() *iris.Application {
 	flag.Parse()
+	ac := makeAccessLog()
+	defer ac.Close()
 	readEnv()
 	app := iris.New()
+	app.UseRouter(ac.Handler)
+	corsApp(app)
+
+	db = model.InitDb(
+		viper.GetString("dbName"),
+		viper.GetString("bucketName"),
+	)
+
+	iris.RegisterOnInterrupt(func() { db.Close() })
+
+	initApp(app, db)
+	return app
+
+}
+
+func corsApp(app *iris.Application) {
 	crs := cors.New(cors.Options{
 		AllowedOrigins:   []string{"*"},
 		AllowCredentials: true,
 	})
 	app.UseRouter(crs)
-	db = model.InitDb(
-		viper.GetString("dbName"),
-		viper.GetString("bucketName"),
-	)
-	iris.RegisterOnInterrupt(
-		func() {
-			db.Close()
-		})
-	initApp(app, db)
-	portNow := fmt.Sprintf(":%s", viper.GetString("port"))
-	app.Listen(portNow)
-	return
-
 }
-
 func readEnv() {
 	viper.SetConfigFile("config.yaml")
 	err := viper.ReadInConfig()
 	if err != nil {
 		panic(err)
 	}
-	//viper.Set("dbName", "shorter.db")
-	//viper.Set("bucketName", "link")
 }
 func initApp(app *iris.Application, db *model.ShorterDB) {
 	ss := service.ShorterService{
@@ -56,4 +66,13 @@ func initApp(app *iris.Application, db *model.ShorterDB) {
 	}
 	cc := controller.ShorterCtl{Service: &ss}
 	cc.Register(app)
+}
+
+func makeAccessLog() *accesslog.AccessLog {
+	ac := accesslog.File("./access.log")
+	ac.SetFormatter(&accesslog.JSON{
+		Indent:    "  ",
+		HumanTime: true,
+	})
+	return ac
 }

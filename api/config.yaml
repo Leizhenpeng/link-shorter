@@ -1,3 +1,4 @@
 dbName: "shorter.db"
 bucketName: "link"
 port: 9000
+jwtSecret: "1Y9Wbr3Z4X"

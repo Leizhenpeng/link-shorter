@@ -81,6 +81,29 @@ admin := app.Party("/admin")
 }
 ```
 
+### Dependent injection(DI) to reduce coupling()
+```golang
+{
+...
+app.RegisterDependency(shortService)
+...
+app.ConfigureContainer(func(api *iris.APIContainer) {
+  api.Post("/short", s.ShortLink)
+  api.Get("/u/{key}", s.GetRaw)
+})}
+...
+func (s ShorterCtl) GetRaw(ctx iris.Context, ss *service.ShorterService) {
+	key := ctx.Params().Get("key")
+	link, err := ss.GetRaw(key)
+	if err != nil {
+		CommonResponse{}.Fail().SetData(err.Error()).Send(ctx)
+		return
+	}
+	ctx.Redirect(link, iris.StatusMovedPermanently)
+	return
+}
+
+
 ### Routing self-test, become a cute backend
 ```go
 var commonSchema = `{

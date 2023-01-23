@@ -22,6 +22,10 @@ type ShorterService struct {
 	DB *model.ShorterDB
 }
 
+func NewShorterService(db *model.ShorterDB) *ShorterService {
+	return &ShorterService{db}
+}
+
 func (s ShorterService) DelOne(key string) error {
 	return s.DB.Del(key)
 }

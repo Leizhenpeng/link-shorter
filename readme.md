@@ -51,6 +51,8 @@
 
 
 ## 功能介绍-iris部分
+
+
 ### 记录请求日志，写入本地文件
 
 ```json
@@ -80,6 +82,32 @@ admin := app.Party("/admin")
 }
 ```
 
+
+
+### 依赖注入,降低耦合
+```golang
+{
+...
+app.RegisterDependency(shortService)
+...
+app.ConfigureContainer(func(api *iris.APIContainer) {
+  api.Post("/short", s.ShortLink)
+  api.Get("/u/{key}", s.GetRaw)
+})}
+...
+func (s ShorterCtl) GetRaw(ctx iris.Context, ss *service.ShorterService) {
+	key := ctx.Params().Get("key")
+	link, err := ss.GetRaw(key)
+	if err != nil {
+		CommonResponse{}.Fail().SetData(err.Error()).Send(ctx)
+		return
+	}
+	ctx.Redirect(link, iris.StatusMovedPermanently)
+	return
+}
+
+```
+
 ### 路由自测，成为一名可爱的后端
 ```go
 var commonSchema = `{
@@ -98,7 +126,6 @@ func TestAdminApi(t *testing.T) {
 		JSON().Schema(commonSchema)
 }
 ```
-
 
 ## 相关资料
 

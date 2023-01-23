@@ -28,7 +28,6 @@ func main() {
 func NewApp() *iris.Application {
 	flag.Parse()
 	ac := makeAccessLog()
-	defer ac.Close()
 	readEnv()
 	app := iris.New()
 	app.UseRouter(ac.Handler)
@@ -39,7 +38,10 @@ func NewApp() *iris.Application {
 		viper.GetString("bucketName"),
 	)
 
-	iris.RegisterOnInterrupt(func() { db.Close() })
+	iris.RegisterOnInterrupt(func() {
+		db.Close()
+		ac.Close()
+	})
 
 	initApp(app, db)
 	return app
@@ -61,11 +63,9 @@ func readEnv() {
 	}
 }
 func initApp(app *iris.Application, db *model.ShorterDB) {
-	ss := service.ShorterService{
-		DB: db,
-	}
-	cc := controller.ShorterCtl{Service: &ss}
-	cc.Register(app)
+	shortService := service.NewShorterService(db)
+	app.RegisterDependency(shortService)
+	controller.NewShorterCtl().Register(app)
 }
 
 func makeAccessLog() *accesslog.AccessLog {

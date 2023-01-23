@@ -33,7 +33,7 @@ func TestCommonApi(t *testing.T) {
 		r.Object().Value("code").Number().Equal(200)
 		r.Object().Value("msg").String().Equal("success")
 		shortKey := r.Object().Value("data").String().Raw()
-		reg := `^[a-zA-Z0-9]{6}$`
+		reg := `^[a-zA-Z0-9-_]{6}$`
 		if !regexp.MustCompile(reg).MatchString(shortKey) {
 			t.Errorf("shortKey not match %s", shortKey)
 		}

@@ -21,16 +21,32 @@ type AdminLoginRequest struct {
 }
 
 type ShorterCtl struct {
-	Service *service.ShorterService
 }
 
-func (s ShorterCtl) DelOne(ctx iris.Context) {
+type ShorterCtlCore interface {
+	Ping(ctx iris.Context)
+	Login(ctx iris.Context)
+	Register(app *iris.Application)
+	ShortLink(ctx iris.Context, ss *service.ShorterService)
+	GetRaw(ctx iris.Context, ss *service.ShorterService)
+	DelOne(ctx iris.Context, ss *service.ShorterService)
+	Flush(ctx iris.Context, ss *service.ShorterService)
+	All(ctx iris.Context, ss *service.ShorterService)
+}
+
+var _ ShorterCtlCore = (*ShorterCtl)(nil)
+
+func NewShorterCtl() *ShorterCtl {
+	return &ShorterCtl{}
+}
+
+func (s ShorterCtl) DelOne(ctx iris.Context, ss *service.ShorterService) {
 	var req DelRequest
 	err := ctx.ReadJSON(&req)
 	if err != nil {
 		return
 	}
-	err = s.Service.DelOne(req.Key)
+	err = ss.DelOne(req.Key)
 	if err != nil {
 		CommonResponse{}.Fail().SetData(err.Error()).Send(ctx)
 		return
@@ -53,31 +69,35 @@ func (s ShorterCtl) Register(app *iris.Application) {
 	})
 
 	app.Get("/ping", s.Ping)
-
-	app.Post("/short", s.ShortLink)
-	app.Get("/u/{key}", s.GetRaw)
-
 	app.Post("/login", s.Login)
+
+	app.ConfigureContainer(func(api *iris.APIContainer) {
+		api.Post("/short", s.ShortLink)
+		api.Get("/u/{key}", s.GetRaw)
+	})
+
 	admin := app.Party("/admin")
 	{
 		admin.UseRouter(jwtMiddle.Serve)
-		admin.Post("/flush", s.Flush)
-		admin.Get("/all", s.All)
-		admin.Post("/del", s.DelOne)
+		admin.ConfigureContainer(func(api *iris.APIContainer) {
+			api.Post("/flush", s.Flush)
+			api.Get("/all", s.All)
+			api.Post("/del", s.DelOne)
+		})
 	}
 }
 
-func (s ShorterCtl) ShortLink(ctx iris.Context) {
+func (s ShorterCtl) ShortLink(ctx iris.Context, ss *service.ShorterService) {
 	var req ShorterRequest
 	err := ctx.ReadJSON(&req)
 	if err != nil {
 		return
 	}
-	if !s.Service.ValidLink(req.Link) {
+	if !ss.ValidLink(req.Link) {
 		CommonResponse{}.Fail().SetData("invalid link").Send(ctx)
 		return
 	}
-	shorter, err := s.Service.GetShorter(req.Link)
+	shorter, err := ss.GetShorter(req.Link)
 	if err != nil {
 		CommonResponse{}.Fail().SetData(err.Error()).Send(ctx)
 		return
@@ -86,9 +106,9 @@ func (s ShorterCtl) ShortLink(ctx iris.Context) {
 	return
 
 }
-func (s ShorterCtl) GetRaw(ctx iris.Context) {
+func (s ShorterCtl) GetRaw(ctx iris.Context, ss *service.ShorterService) {
 	key := ctx.Params().Get("key")
-	link, err := s.Service.GetRaw(key)
+	link, err := ss.GetRaw(key)
 	if err != nil {
 		CommonResponse{}.Fail().SetData(err.Error()).Send(ctx)
 		return
@@ -97,8 +117,8 @@ func (s ShorterCtl) GetRaw(ctx iris.Context) {
 	return
 }
 
-func (s ShorterCtl) Flush(ctx iris.Context) {
-	err := s.Service.ClearAll()
+func (s ShorterCtl) Flush(ctx iris.Context, ss *service.ShorterService) {
+	err := ss.ClearAll()
 	if err != nil {
 		CommonResponse{}.Fail().SetData(err.Error()).Send(ctx)
 		return
@@ -106,8 +126,8 @@ func (s ShorterCtl) Flush(ctx iris.Context) {
 	CommonResponse{}.Success().Send(ctx)
 }
 
-func (s ShorterCtl) All(ctx iris.Context) {
-	all, err := s.Service.ShowAll()
+func (s ShorterCtl) All(ctx iris.Context, ss *service.ShorterService) {
+	all, err := ss.ShowAll()
 	if err != nil {
 		CommonResponse{}.Fail().SetData(err.Error()).Send(ctx)
 		return
@@ -143,15 +163,3 @@ func (s ShorterCtl) Login(ctx iris.Context) {
 	}).Send(ctx)
 
 }
-
-type ShorterCtlCore interface {
-	ShortLink(ctx iris.Context)
-	GetRaw(ctx iris.Context)
-	DelOne(ctx iris.Context)
-	Flush(ctx iris.Context)
-	All(ctx iris.Context)
-	Ping(ctx iris.Context)
-	Register(app *iris.Application)
-}
-
-var _ ShorterCtlCore = (*ShorterCtl)(nil)
